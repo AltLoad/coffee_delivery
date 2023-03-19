@@ -1,9 +1,35 @@
-import { createContext } from 'react'
+import { createContext, ReactNode, useState } from 'react'
 
-interface CartContextType {
-  count: number
+interface CartType {
+  name: string
+  nameNoFormated: string
+  amount: number
   price: number
-  coffee: string
+  img: string
 }
 
-const CartContext = createContext({} as CartContextType)
+interface CartContextType {
+  cartCoffees?: CartType[] | undefined
+  setCartCoffees?: any
+  setTotalItems?: any
+  totalItems?: number
+}
+
+export const CartContext = createContext({} as CartContextType)
+
+interface CartContextProviderProps {
+  children: ReactNode
+}
+
+export function CartContextProvides({ children }: CartContextProviderProps) {
+  const [cartCoffees, setCartCoffees] = useState([])
+  const [totalItems, setTotalItems] = useState(0)
+
+  return (
+    <CartContext.Provider
+      value={{ cartCoffees, setCartCoffees, setTotalItems }}
+    >
+      {children}
+    </CartContext.Provider>
+  )
+}

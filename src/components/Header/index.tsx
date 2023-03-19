@@ -5,12 +5,12 @@ import logo from '../../assets/logo.svg'
 import { NavLink } from 'react-router-dom'
 import { Home } from '../../pages/Home'
 import { useContext } from 'react'
-import { CartContext } from '../../App'
+import { CartContext } from '../../contexts/GlobalContextProvider'
 
 export function Header() {
   const { cartCoffees } = useContext(CartContext)
 
-  const number = cartCoffees.length
+  const number = cartCoffees!.length
 
   return (
     <HeaderContainer>

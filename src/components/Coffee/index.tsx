@@ -1,6 +1,6 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
 import React, { useContext } from 'react'
-import { CartContext } from '../../App'
+import { CartContext } from '../../contexts/GlobalContextProvider'
 import { ContainerSelectedCoffees, SelectedCoffees } from './styles'
 
 export function Coffee() {
@@ -49,7 +49,7 @@ export function Coffee() {
 
   return (
     <ContainerSelectedCoffees>
-      {cartCoffees?.length > 0 ? (
+      {cartCoffees!.length > 0 ? (
         cartCoffees!.map((coffee) => {
           const priceAmount = coffee.price * coffee.amount
           const price = `$${priceAmount.toFixed(2)}`

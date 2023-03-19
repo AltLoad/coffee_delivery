@@ -3,12 +3,12 @@ import { CartContainer } from './styles'
 import axios from 'axios'
 import { MapPinLine, Placeholder } from 'phosphor-react'
 import { useContext, useEffect, useState } from 'react'
-import { CartContext } from '../../App'
+import { CartContext } from '../../contexts/GlobalContextProvider'
 import { Coffee } from '../../components/Coffee'
 
 export function Cart() {
   const { cartCoffees, setTotalItems } = useContext(CartContext)
-  const [totalPrice, setTotalPrice] = useState<Number>(0)
+  const [totalPrice, setTotalPrice] = useState<Number | any>(0)
   const { register, handleSubmit, setValue, reset } = useForm()
   const prices: any = []
   const valueDelivery = 3

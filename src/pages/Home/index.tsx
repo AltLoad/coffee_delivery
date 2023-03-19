@@ -10,12 +10,18 @@ import {
   Minus,
 } from 'phosphor-react'
 import apiCoffee from '../../apicoffes.json'
-import { CartContext } from '../../App'
+import { CartContext } from '../../contexts/GlobalContextProvider'
+import { number } from 'zod'
+
+interface Product {
+  name: string
+  amount: number
+}
 
 export function Home() {
   const { setCartCoffees, cartCoffees } = useContext(CartContext)
 
-  const [amountCoffee, setAmountCoffee] = useState([])
+  const [amountCoffee, setAmountCoffee] = useState<any>([])
 
   function getAmountOfCoffee() {
     apiCoffee.forEach((element) => {
@@ -27,7 +33,7 @@ export function Home() {
           .toLowerCase(),
         amount: element.amount,
       }
-      setAmountCoffee((prevState) => [...prevState, addNewCoffee])
+      setAmountCoffee((prevState: any) => [...prevState, addNewCoffee])
     })
   }
 
@@ -46,14 +52,14 @@ export function Home() {
       img,
     }
 
-    amountCoffee.map((element) => {
-      if (element.name === nameFormated) {
-        newCoffeeCart.amount = element.amount
-      }
-    })
+    amountCoffee.map((element: Product) =>
+      element.name === nameFormated
+        ? (newCoffeeCart.amount = element.amount)
+        : null,
+    )
 
-    if (cartCoffees.find((element) => element.name === nameFormated)) {
-      const funcao = cartCoffees.map((element) => {
+    if (cartCoffees!.find((element) => element.name === nameFormated)) {
+      const funcao = cartCoffees!.map((element) => {
         if (element.name === newCoffeeCart.name) {
           return {
             ...element,
@@ -65,7 +71,7 @@ export function Home() {
 
       setCartCoffees(funcao)
     } else {
-      setCartCoffees((prevState) => [...prevState, newCoffeeCart])
+      setCartCoffees((prevState: any) => [...prevState, newCoffeeCart])
     }
 
     const homeContainer = document.getElementById('homeContainer')
@@ -93,7 +99,7 @@ export function Home() {
       .toLowerCase()
 
     if (type === 'add') {
-      const newAmount = amountCoffee.map((element) => {
+      const newAmount: any = amountCoffee.map((element: Product) => {
         if (element.name === nameFormated) {
           return { ...element, amount: element.amount + 1 }
         }
@@ -106,7 +112,7 @@ export function Home() {
       if (amountCoffee[id].amount === 1) {
         alert('Não é possível remover mais um deste produto')
       } else {
-        const newAmount = amountCoffee.map((element) => {
+        const newAmount: any = amountCoffee.map((element: Product) => {
           if (element.name === nameFormated) {
             return { ...element, amount: element.amount - 1 }
           }
