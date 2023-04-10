@@ -139,4 +139,51 @@ export const CartContainer = styled.main`
   .placeRed::placeholder {
     color: red;
   }
+
+  .divPagamento {
+    background-color: ${(props) => props.theme['base-card']};
+    padding: 4rem;
+    margin-top: 1.2rem;
+
+    p:nth-child(1) {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    p:nth-child(2) {
+      margin-left: 2.9rem;
+      margin-top: 0.2rem;
+      margin-bottom: 3.2rem;
+    }
+
+    .pagamentoButtons {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        width: 17.8rem;
+        height: 5.1rem;
+        border: none;
+        font-size: 1.2rem;
+        display: flex;
+        gap: 1.2rem;
+        align-items: center;
+        background: #e6e5e5;
+        border-radius: 0.6rem;
+        padding: 1.6rem;
+        color: #574f4d;
+
+        &:hover {
+          background-color: #ebe5f9;
+          border: 1px solid #8047f8;
+        }
+
+        &.click {
+          background-color: #ebe5f9;
+          border: 1px solid #8047f8;
+        }
+      }
+    }
+  }
 `

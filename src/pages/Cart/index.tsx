@@ -5,14 +5,33 @@ import { MapPinLine, Placeholder } from 'phosphor-react'
 import { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../../contexts/GlobalContextProvider'
 import { Coffee } from '../../components/Coffee'
+import sifrao from '../../assets/sifrao.png'
+import credito from '../../assets/credito.png'
+import debito from '../../assets/debito.png'
+import dinheiro from '../../assets/dinheiro.png'
+import { useNavigate } from 'react-router-dom'
 
 export function Cart() {
-  const { cartCoffees, setTotalItems } = useContext(CartContext)
+  const { cartCoffees, setTotalItems, setCartCoffees } = useContext(CartContext)
   const [totalPrice, setTotalPrice] = useState<Number | any>(0)
   const { register, handleSubmit, setValue, reset } = useForm()
   const prices: any = []
   const valueDelivery = 3
   const total = parseFloat(totalPrice) + valueDelivery
+  const divButtons = document.getElementsByClassName('pagamentoButtons') as any
+  const navigate = useNavigate()
+
+  const buttonActive = (e: any) => {
+    const buttons = divButtons[0].children
+
+    for (let i = 0; i < buttons.length; i++) {
+      if (buttons[i].value === e.target.value) {
+        buttons[i].classList.add('click')
+      } else {
+        buttons[i].classList.remove('click')
+      }
+    }
+  }
 
   cartCoffees!.forEach((cart) => {
     const priceAmount = cart.price * cart.amount
@@ -30,14 +49,19 @@ export function Cart() {
   }, [prices])
 
   const onSubmit = (e: any) => {
-    alert('Mandou')
+    const valuePagament = document.getElementsByClassName('click') as any
+    const numberHouse = document.getElementById('numero') as any
     setTotalItems(total.toFixed(2))
-    reset()
+    localStorage.setItem('logradouroNumero', numberHouse.value)
+    localStorage.setItem('pagamento', valuePagament[0].value)
     const inputs = document.querySelectorAll("input[type='text']")
-    return inputs.forEach((input: any) => {
+    inputs.forEach((input: any) => {
       // eslint-disable-next-line no-unused-expressions
       input.value === '' ? input.classList.remove('placeRed') : null
     })
+    reset()
+    setCartCoffees([])
+    navigate('/finish')
   }
 
   const checkCEP = (e: { target: { value: string } }) => {
@@ -58,9 +82,13 @@ export function Cart() {
 
       async function setInput(data: any) {
         setValue('logradouro', data.logradouro)
+        localStorage.setItem('logradouro', data.logradouro)
         setValue('bairro', data.bairro)
+        localStorage.setItem('bairro', data.bairro)
         setValue('estado', data.uf)
+        localStorage.setItem('uf', data.uf)
         setValue('cidade', data.localidade)
+        localStorage.setItem('localidade', data.localidade)
       }
 
       async function result() {
@@ -165,6 +193,36 @@ export function Cart() {
             {/* <input type="submit" /> */}
           </fieldset>
         </form>
+
+        <div className="divPagamento">
+          <p>
+            <img src={sifrao} alt="" />
+            Pagamento
+          </p>
+          <p>
+            O pagamento é feito na entrega. Escolha a forma que deseja pagar
+          </p>
+          <div className="pagamentoButtons">
+            <button
+              value="credito"
+              onClick={(e) => buttonActive(e)}
+              className="click"
+            >
+              <img src={credito} alt="" />
+              CARTÃO DE CRÉDITO
+            </button>
+
+            <button value="debito" onClick={(e) => buttonActive(e)}>
+              <img src={debito} alt="" />
+              CARTÃO DE DÉBITO
+            </button>
+
+            <button value="dinheiro" onClick={(e) => buttonActive(e)}>
+              <img src={dinheiro} alt="" />
+              DINHEIRO
+            </button>
+          </div>
+        </div>
       </section>
 
       <section>

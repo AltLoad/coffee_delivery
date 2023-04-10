@@ -13,6 +13,7 @@ interface CartContextType {
   setCartCoffees?: any
   setTotalItems?: any
   totalItems?: number
+  setPagament?: any
 }
 
 export const CartContext = createContext({} as CartContextType)
