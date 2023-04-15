@@ -3,8 +3,6 @@ import styled from 'styled-components'
 export const DivContainer = styled.div`
   margin-top: 8rem;
 
-
-
   .divH1 {
     margin-bottom: 4rem;
     h1 {
@@ -86,10 +84,11 @@ export const DivContainer = styled.div`
           flex-direction: column;
           align-items: center;
 
-          img{
+          img {
             width: 4rem;
           }
         }
+      }
     }
   }
 `
