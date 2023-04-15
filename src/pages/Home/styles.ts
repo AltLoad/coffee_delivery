@@ -59,7 +59,7 @@ export const HomeContainer = styled.main`
     }
 
     .img-home {
-      width: 70%;
+      width: 90rem;
       img {
         width: 100%;
       }
@@ -119,6 +119,72 @@ export const HomeContainer = styled.main`
       }
     }
   }
+
+  @media screen and (max-width: 1022px) {
+    .text-home {
+      text-align: center;
+    }
+
+    .info-home {
+      grid-template-columns: repeat(2, minmax(23.5rem, 1fr));
+      grid-row-gap: 2rem;
+
+      figure {
+        text-align: center;
+        width: fit-content;
+        margin: auto;
+
+        figcaption {
+          width: initial;
+          white-space: nowrap;
+          padding-left: 0;
+        }
+
+        &:nth-child(4) {
+          margin-left: initial;
+
+          figure {
+            gap: initial;
+
+            figcaption {
+              white-space: nowrap;
+            }
+          }
+        }
+
+        &:nth-child(2) {
+          margin-left: initial;
+
+          figure {
+            gap: initial;
+
+            figcaption {
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        grid: initial;
+
+        figure {
+          &:nth-child(4) {
+            margin: auto;
+          }
+
+          &:nth-child(2) {
+            margin: auto;
+          }
+        }
+      }
+    }
+
+    .img-home {
+      display: none !important;
+      visibility: hidden !important;
+    }
+  }
 `
 
 export const CatalogContainer = styled.section`
@@ -146,6 +212,7 @@ export const ProductContainer = styled.div`
   padding: 2.4rem;
   position: relative;
   min-height: 31rem;
+  margin: auto;
 
   .img-product {
     margin-bottom: 1.6rem;

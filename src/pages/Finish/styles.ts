@@ -3,6 +3,8 @@ import styled from 'styled-components'
 export const DivContainer = styled.div`
   margin-top: 8rem;
 
+
+
   .divH1 {
     margin-bottom: 4rem;
     h1 {
@@ -25,7 +27,7 @@ export const DivContainer = styled.div`
 
   .divImgInfos {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(44rem, 1fr));
 
     div {
       border-radius: 0.6rem 3.6rem;
@@ -34,22 +36,60 @@ export const DivContainer = styled.div`
       display: flex;
       flex-direction: column;
       gap: 3.2rem;
-      width: 52.6rem;
       justify-content: center;
 
       figure {
         display: flex;
         gap: 1.2rem;
+        width: fit-content;
 
         figcaption {
           color: #574f4d;
           line-height: 130%;
+          width: fit-content;
 
           span {
             font-weight: 700;
           }
         }
       }
+    }
+
+    @media screen and (max-width: 1021px) {
+      .imgMoto {
+        display: none;
+        visibility: hidden;
+      }
+
+      div {
+        align-items: center;
+
+        figure {
+          width: 70vw;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    @media screen and (max-width: 505px) {
+      div {
+        width: 86.11vw;
+      }
+    }
+
+    @media screen and (max-width: 420px) {
+      text-align: center;
+
+      div {
+        figure {
+          white-space: initial;
+          flex-direction: column;
+          align-items: center;
+
+          img{
+            width: 4rem;
+          }
+        }
     }
   }
 `

@@ -106,4 +106,24 @@ export const SelectedCoffees = styled.div`
       }
     }
   }
+
+  @media screen and (max-width: 989px) {
+    .price {
+      margin-left: auto;
+    }
+  }
+
+  @media screen and (max-width: 470px) {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+
+    .price {
+      margin: auto;
+    }
+
+    div {
+      width: fit-content;
+    }
+  }
 `

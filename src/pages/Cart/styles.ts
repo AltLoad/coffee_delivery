@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const CartContainer = styled.main`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(41rem, 1fr));
   column-gap: 3.2rem;
   margin-top: 4rem;
 
@@ -24,7 +24,7 @@ export const CartContainer = styled.main`
       row-gap: 1.6rem;
       column-gap: 1.2rem;
       border: none;
-      grid-template-columns: 30% 60% 10%;
+      grid-template-columns: 30% 50% 20%;
       grid-template-areas:
         'CEP CEP CEP'
         'RUA RUA RUA'
@@ -51,6 +51,7 @@ export const CartContainer = styled.main`
       }
 
       input {
+        width: 100%;
         background-color: ${(props) => props.theme['base-button']};
         border: none;
         border-radius: 0.4rem;
@@ -134,6 +135,10 @@ export const CartContainer = styled.main`
         }
       }
     }
+
+    @media screen and (max-width: 468px) {
+      width: 88vw;
+    }
   }
 
   .placeRed::placeholder {
@@ -158,11 +163,12 @@ export const CartContainer = styled.main`
     }
 
     .pagamentoButtons {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(13rem, auto));
+      grid-column-gap: 2rem;
+      grid-row-gap: 2rem;
 
       button {
-        width: 17.8rem;
         height: 5.1rem;
         border: none;
         font-size: 1.2rem;
@@ -184,6 +190,27 @@ export const CartContainer = styled.main`
           border: 1px solid #8047f8;
         }
       }
+    }
+  }
+
+  @media screen and (max-width: 989px) {
+    .section1 {
+      order: 2;
+    }
+
+    .section2 {
+      order: 1;
+      margin-bottom: 5rem;
+    }
+  }
+
+  @media screen and (max-width: 470px) {
+    .section1 {
+      width: 86.11vw;
+    }
+
+    .section2 {
+      width: 86.11vw;
     }
   }
 `

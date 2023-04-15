@@ -6,6 +6,7 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
 
   a {
+    position: relative;
     svg {
       width: 100%;
       height: 100%;
@@ -18,8 +19,8 @@ export const HeaderContainer = styled.header`
 
     span {
       position: absolute;
-      right: 9.4rem;
-      top: 2rem;
+      right: -1rem;
+      top: -5rem;
       color: white;
       background-color: ${(props) => props.theme['yellow-dark']};
       border-radius: 100rem;

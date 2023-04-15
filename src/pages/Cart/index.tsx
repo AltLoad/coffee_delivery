@@ -123,7 +123,7 @@ export function Cart() {
 
   return (
     <CartContainer>
-      <section>
+      <section className="section1">
         <h1>Complete seu pedido</h1>
 
         <form id="formy" onSubmit={handleSubmit(onSubmit)}>
@@ -225,7 +225,7 @@ export function Cart() {
         </div>
       </section>
 
-      <section>
+      <section className="section2">
         <h2>Cafés selecionados</h2>
 
         <div className="coffeesSelections">

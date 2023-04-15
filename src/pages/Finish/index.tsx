@@ -53,7 +53,7 @@ export function Fisish() {
             </figcaption>
           </figure>
         </div>
-        <img src={icon} alt="" />
+        <img src={icon} alt="" className="imgMoto" />
       </div>
     </DivContainer>
   )
